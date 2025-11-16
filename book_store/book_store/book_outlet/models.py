@@ -62,7 +62,7 @@ class Book(models.Model):
     )
     author = models.ForeignKey(Author,on_delete=models.CASCADE,null=True)
     is_bestSelling = models.BooleanField(default=True)
-    slug = models.SlugField(unique=True,editable=True, blank=False,db_index=True)   # 👈 change here
+    slug = models.SlugField(unique=True,editable=True, blank=False,db_index=True)  
     published_countries=models.ManyToManyField(Country)
 
     def save(self, *args, **kwargs):

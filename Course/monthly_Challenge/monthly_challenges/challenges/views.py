@@ -12,6 +12,16 @@ from django.template.loader import render_to_string
 # def february(request):
 #      return HttpResponse("Walk🚶🏽20 minutes everyday");
 
+## class work
+user_name={
+    "user":"Abhishek"
+}
+def user_name(request):
+    try:
+        return render(request,user_name)
+    except:
+        HttpResponseNotFound("no user");
+##
 
 
 monthly_challenges_dict = {
@@ -29,6 +39,11 @@ monthly_challenges_dict = {
     "december": "Reflect🪞 on the year and plan📝 next year"
 }
 
+def list_of_students(request):
+    students=["Fatimah","Nasrin","Fiza","Stacy","julia"];
+    return render(request,"challenges/class.html",{
+        "name_of_students":students
+    })
 
 def index(request):
     #  list_items=""
@@ -55,13 +70,7 @@ def monthly_challenges(request, month):
     try:
         challenge_text = monthly_challenges_dict[month]
         back_to_index = reverse("index")  # Ye index page ka URL dega
-        # response_data = f"""
-        #     <h1>{challenge_text}</h1>
-        #     <br>
-        #     <a href="{back_to_index}">
-        #         <button style="padding: 10px; font-size: 16px;background-color:yellow">⬅️ Back to All Challenges</button>
-        #     </a>
-        # """
+      
         # response_data = render_to_string("challenges/challenge.html") # idhar me jo challenges folder hai wo template ke baad wala hai 
         # return HttpResponse(response_data)
         # alternative to the above two lines 
@@ -74,6 +83,7 @@ def monthly_challenges(request, month):
         # response_data =render_to_string("404.html")
         # return HttpResponseNotFound(response_data)
         raise Http404()
+
 
 def monthly_challenge_by_number(request,month):
      months = list(monthly_challenges_dict.keys());

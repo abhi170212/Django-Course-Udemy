@@ -9,11 +9,18 @@
 {% block title %} {{post.title}} {% endblock %}
 
 {% block content %}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.7.0/vanilla-tilt.min.js"></script>
+
 <section id="summary">
   <h2>{{post.title}}</h2>
+  <div>
+    {% for tag in post_tags %}
+    <span class="tags">#{{tag.caption}}</span>
+    {% endfor %}
+  </div>
   <article>
-    <img src="{% static 'myblog/images/woods.jpg' %}" alt="Post Title" />
-    <address>{{ post.author|title}}</address>
+    <img src="{% static 'myblog/images/'|add:post.image_name %}" alt="Post Title" />
+    <address>By <a href="mailto:{{ post.author.email_address}}">{{ post.author|title}}</address></a></address>
     <div>Last Updated on <time>{{post.date|date:"d M Y"}}</time></div>
   </article>
 </section>
@@ -21,8 +28,6 @@
 <main>
   <p>
   {{post.content}}
-
-    
 </main>
 
 {% endblock %}

@@ -92,9 +92,33 @@ body::before {
 }
 
 /* Responsive adjustments */
+@media (max-width: 1024px) {
+  #all-posts {
+    margin: 5rem auto;
+  }
+
+  ul {
+    grid-template-columns: repeat(auto-fill, minmax(15rem, 1fr));
+    gap: 1.5rem;
+  }
+
+  .post a {
+    height: 20rem;
+  }
+
+  .post h3 {
+    font-size: 1.1rem;
+  }
+}
+
 @media (max-width: 768px) {
   #all-posts {
     margin: 4rem auto;
+  }
+
+  ul {
+    grid-template-columns: repeat(auto-fill, minmax(13rem, 1fr));
+    gap: 1rem;
   }
 
   .post a {
@@ -105,5 +129,54 @@ body::before {
   .post img {
     width: 5rem;
     height: 5rem;
+  }
+
+  .post h3 {
+    font-size: 1rem;
+  }
+
+  .post p {
+    font-size: 0.85rem;
+  }
+}
+
+@media (max-width: 480px) {
+  #all-posts {
+    margin: 3rem auto;
+    width: 95%;
+  }
+
+  #all-posts h2 {
+    font-size: 1.8rem;
+    margin: 2rem 0;
+  }
+
+  ul {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .post a {
+    flex-direction: row;
+    text-align: left;
+    padding: 1rem;
+    height: auto;
+  }
+
+  .post img {
+    width: 4rem;
+    height: 4rem;
+    margin-bottom: 0;
+    margin-right: 1rem;
+  }
+
+  .post h3 {
+    font-size: 1rem;
+    margin-bottom: 0.3rem;
+  }
+
+  .post p {
+    font-size: 0.8rem;
+    margin: 0;
   }
 }

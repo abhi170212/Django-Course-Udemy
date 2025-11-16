@@ -17,7 +17,7 @@ class ReviewForm(forms.ModelForm):
           labels={
                "user_name":"Your Name",
                "review_text":"Your Feedback",
-               "rating":"Your rating"
+               "rating":"Your rating",
           }
           error_messages={
                "user_name":{

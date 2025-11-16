@@ -10,5 +10,7 @@ urlpatterns=[
      path("<int:month>",views.monthly_challenge_by_number),
      path("<str:month>",views.monthly_challenges,name="month-challenge"),
      re_path(r"^username/(?P<username>[a-zA-Z0-9_]+)/$",views.regex,name="regex"),
+     path("username/",views.user_name),
+     path("student/",views.list_of_students)
      
      ]
