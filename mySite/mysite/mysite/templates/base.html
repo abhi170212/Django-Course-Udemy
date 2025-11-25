@@ -7,19 +7,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}My Django Site{% endblock %}</title>
     {% load static %}
-    {%block styling%} {% endblock %} 
     <link rel="stylesheet" href="{% static 'app.css' %}">
+    {%block styling%} {% endblock %}
 </head>
 <body>
 
 
 <header id="main-navigation">
   <h1>
-    <img src="{% static 'images/me.png' %}" alt="Logo">
+    <img src="{% static 'images/img.jpg' %}" alt="Logo">
     <a href="{% url 'starting-page' %}">Abhishek's Blog</a>
   </h1>
   <nav>
     <a href="{%url 'all-posts' %}">All Posts</a>
+    <a href="{%url 'read-later' %}">Stored Posts</a>
   </nav>
 </header>
 

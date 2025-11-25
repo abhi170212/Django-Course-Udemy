@@ -19,27 +19,10 @@ body {
   height: 22rem;
 }
 
-.tags{
-  background-color: white;
-  color: #5706c0;
-  padding: 0.2rem 0.5rem;
-  border-radius: 0;
-  display: inline-block;
-  margin: 0.2rem;
-  font-size: 0.7rem;
-  font-weight: 600;
-  position: relative;
-  border: 1px solid #5706c0;
-  letter-spacing: 0.3px;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  border-radius:3rem;
-}
-
 #summary h2 {
   color: white;
   font-size: 4.5rem;
-  margin-bottom:0.25rem;
+  margin-bottom: 0.25rem;
 }
 
 #summary article {
@@ -65,9 +48,33 @@ body {
   font-weight: bold;
 }
 
+#summary a {
+  color: white;
+  text-decoration: none;
+}
+
 #summary time {
   font-weight: bold;
-} 
+}
+
+#read-later {
+  margin: 2rem 0;
+}
+
+#read-later button {
+  background-color: transparent;
+  border: 1px solid white;
+  padding: 0.5rem 2rem;
+  font: inherit;
+  color: white;
+  cursor: pointer;
+}
+
+#read-later button:hover,
+#read-later button:active {
+  background-color: white;
+  color: #390281;
+}
 
 main {
   width: 90%;
@@ -79,83 +86,223 @@ main {
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
 }
 
-/* Responsive adjustments */
-@media (max-width: 1024px) {
-  #summary {
-    height: 20rem;
-    padding: 1.5rem;
-  }
-
-  #summary h2 {
-    font-size: 3.5rem;
-  }
-
-  #summary article {
-    top: 1.5rem;
-    right: 2rem;
-  }
-
-  #summary article img {
-    width: 10rem;
-    height: 10rem;
-  }
+.tags{
+  background-color: white;
+  color: #390281;
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
 }
 
+#comment-form {
+  margin: 3rem auto;
+  width: 90%;
+  max-width: 40rem;
+  border-radius: 12px;
+  background: linear-gradient(135deg, #ffffff, #f8f6ff);
+  box-shadow: 0 8px 30px rgba(57, 2, 129, 0.15);
+  padding: 2rem;
+  border: 1px solid rgba(87, 6, 192, 0.1);
+}
+
+#comment-form h3 {
+  color: #390281;
+  text-align: center;
+  margin-top: 0;
+  margin-bottom: 1.5rem;
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+
+#comment-form button {
+  font: inherit;
+  background: linear-gradient(135deg, #5706c0, #390281);
+  color: white;
+  border: none;
+  padding: 0.8rem 2rem;
+  border-radius: 50px;
+  cursor: pointer;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  font-size: 0.9rem;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(87, 6, 192, 0.2);
+  display: block;
+  width: 100%;
+  margin-top: 1rem;
+}
+
+#comment-form button:hover,
+#comment-form button:active {
+  background: linear-gradient(135deg, #390281, #5706c0);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(87, 6, 192, 0.3);
+}
+
+.form-control {
+  margin-bottom: 1.5rem;
+}
+
+.form-control label {
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  display: block;
+  color: #390281;
+  font-size: 0.95rem;
+}
+
+.form-control input,
+.form-control textarea {
+  display: block;
+  width: 100%;
+  font: inherit;
+  padding: 0.8rem 1rem;
+  border-radius: 8px;
+  border: 2px solid #e1d8f1;
+  background-color: #faf9fc;
+  transition: all 0.3s ease;
+  font-size: 1rem;
+  color: #333;
+}
+
+.form-control input:focus,
+.form-control textarea:focus {
+  outline: none;
+  border-color: #5706c0;
+  box-shadow: 0 0 0 3px rgba(87, 6, 192, 0.1);
+  background-color: #fff;
+}
+
+.form-control input::placeholder,
+.form-control textarea::placeholder {
+  color: #aaa;
+  font-style: italic;
+}
+
+/* Responsive adjustments */
 @media (max-width: 768px) {
-  #summary {
-    height: auto;
-    padding: 1rem;
-    margin: 6rem auto 2rem auto;
+  #comment-form {
+    padding: 1.5rem;
+    margin: 2rem auto;
   }
-
-  #summary h2 {
-    font-size: 2.5rem;
-    text-align: center;
-    margin-top: 1rem;
+  
+  #comment-form h3 {
+    font-size: 1.3rem;
+    margin-bottom: 1rem;
   }
-
-  #summary article {
-    position: relative;
-    top: auto;
-    right: auto;
-    text-align: center;
-    margin: 1rem auto;
-    padding: 0.5rem;
+  
+  .form-control {
+    margin-bottom: 1.2rem;
   }
-
-  #summary article img {
-    width: 8rem;
-    height: 8rem;
-    margin: 0 auto 1rem auto;
+  
+  .form-control input,
+  .form-control textarea {
+    padding: 0.7rem 0.9rem;
+    font-size: 0.95rem;
   }
-
-  main {
-    padding: 0.8rem;
+  
+  #comment-form button {
+    padding: 0.7rem 1.5rem;
+    font-size: 0.85rem;
   }
 }
 
 @media (max-width: 480px) {
-  #summary {
-    margin: 5rem auto 1rem auto;
-    padding: 0.8rem;
+  #comment-form {
+    padding: 1.2rem;
+    width: 95%;
+    margin: 1.5rem auto;
   }
-
-  #summary h2 {
-    font-size: 2rem;
+  
+  #comment-form h3 {
+    font-size: 1.2rem;
   }
-
-  #summary article img {
-    width: 6rem;
-    height: 6rem;
+  
+  .form-control {
+    margin-bottom: 1rem;
   }
-
-  #summary address,
-  #summary time {
+  
+  .form-control input,
+  .form-control textarea {
+    padding: 0.6rem 0.8rem;
     font-size: 0.9rem;
   }
-
-  main {
-    padding: 0.5rem;
-    font-size: 0.9rem;
+  
+  #comment-form button {
+    padding: 0.6rem 1.2rem;
+    font-size: 0.8rem;
   }
+}
+
+.errorlist {
+  list-style: none;
+  margin: 0.5rem 0;
+  padding: 0;
+  color: #d6000b;
+  font-size: 0.85rem;
+  font-weight: 500;
+}
+
+.invalid label {
+  color: #d6000b;
+}
+
+.invalid input,
+.invalid textarea {
+  border-color: #d6000b;
+  background-color: #fff0f0;
+  box-shadow: 0 0 0 3px rgba(214, 0, 11, 0.1);
+}
+
+.invalid input:focus,
+.invalid textarea:focus {
+  border-color: #d6000b;
+  box-shadow: 0 0 0 3px rgba(214, 0, 11, 0.2);
+}
+
+#alert {
+  margin: 8rem auto 3rem auto;
+  border: 1px solid #d6000b;
+  background-color: #ffe6e7;
+  padding: 1rem;
+  width: 90%;
+  max-width: 40rem;
+}
+
+#alert a {
+  text-decoration: none;
+  border: 1px solid #d6000b;
+  background-color: #d6000b;
+  color: white;
+  padding: 0.25rem 1.5rem;
+  border-radius: 6px;
+}
+
+#comments {
+  margin: 3rem auto;
+  width: 90%;
+  max-width: 60rem;
+  border-radius: 12px;
+  background-color: white;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+  padding: 1rem 2rem;
+}
+
+#comments ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+#comments li {
+  margin-bottom: 1rem;
+  border-bottom: 2px solid #ccc;
+}
+
+#comments li:last-of-type {
+  border-bottom: none;
+}
+
+#comments h2 {
+  color: #464646;
 }

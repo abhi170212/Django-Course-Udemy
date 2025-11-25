@@ -1,15 +1,13 @@
 {% extends "base.html" %} 
-{%load static%}
+{% load static %}
 
-{%block styling%}
-<link rel="stylesheet" href="{% static 'myblog/post-detail.css' %}" />
-
-{%endblock%} 
+{% block styling %}
+    <link rel="stylesheet" type="text/css" href="{% static 'myblog/post-detail.css' %}" />
+{% endblock %} 
 
 {% block title %} {{post.title}} {% endblock %}
 
 {% block content %}
-<script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.7.0/vanilla-tilt.min.js"></script>
 
 <section id="summary">
   <h2>{{post.title}}</h2>
@@ -18,8 +16,21 @@
     <span class="tags">#{{tag.caption}}</span>
     {% endfor %}
   </div>
+  <div id="read-later">
+    <form action ="{% url "read-later" %}" method="POST">
+        {% csrf_token %}
+        <input type="hidden" value="{{ post.id }}" name="post_id"/>
+        {% if saved_for_later %}
+          <input type="hidden" name="remove" value="true"/>
+          <button>Remove from Read Later</button>
+        {% else %}
+          <button>Read Later</button>
+        {% endif %}
+    </form>
+    
+  </div>
   <article>
-    <img src="{% static 'myblog/images/'|add:post.image_name %}" alt="Post Title" />
+    <img src="{{ post.image.url }}" alt="Post Title" />
     <address>By <a href="mailto:{{ post.author.email_address}}">{{ post.author|title}}</address></a></address>
     <div>Last Updated on <time>{{post.date|date:"d M Y"}}</time></div>
   </article>
@@ -27,7 +38,33 @@
 
 <main>
   <p>
-  {{post.content}}
+  {{post.content|linebreaks}}
 </main>
 
+<section id="comments">
+<ul>
+  {% for comment in comments %}
+    <li>
+      <h2>{{ comment.user_name}}</h2>
+      <h2>{{ comment.text|linebreaks}}</h2>
+    </li>
+  {%endfor%}
+</ul>
+</section>
+<div>
+  
+  <form method="post" id="comment-form">
+    <h3>Leave a Comment</h3>
+    {%csrf_token%}
+    {% for form_field in comment_form%}
+    <div class="form-control">
+        {{form_field.label_tag}}
+        {{form_field}}
+        {{form_field.errors}}
+    </div>
+    {%endfor%}
+  
+    <button type="submit">Post Comment</button>
+  </form>
+</div>
 {% endblock %}

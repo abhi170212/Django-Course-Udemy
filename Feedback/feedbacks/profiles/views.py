@@ -20,7 +20,7 @@ class CreateProfileView(View):
         return render(request, "profiles/create_profile.html",{
             "form":form
         })
-
+  
     def post(self, request):
         submitted_form= ProfileForm(request.POST,request.FILES)
 

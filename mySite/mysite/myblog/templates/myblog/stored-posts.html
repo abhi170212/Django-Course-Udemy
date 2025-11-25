@@ -1,0 +1,90 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block styling %}
+<style>
+  #stored-posts {
+    margin: 2rem auto;
+    width: 90%;
+    max-width: 60rem;
+    padding: 2rem;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  #stored-posts h1 {
+    color: #390281;
+    text-align: center;
+    margin-bottom: 2rem;
+  }
+  
+  #stored-posts p {
+    text-align: center;
+    font-size: 1.2rem;
+    color: #666;
+  }
+  
+  #stored-posts ul {
+    list-style: none;
+    padding: 0;
+  }
+  
+  #stored-posts li {
+    margin-bottom: 1rem;
+    padding: 1rem;
+    border-radius: 8px;
+    background: #f8f9fa;
+    transition: all 0.3s ease;
+  }
+  
+  #stored-posts li:hover {
+    background: #e9ecef;
+    transform: translateX(5px);
+  }
+  
+  #stored-posts a {
+    text-decoration: none;
+    color: #5706c0;
+    font-weight: 600;
+    font-size: 1.1rem;
+  }
+  
+  #stored-posts a:hover {
+    color: #390281;
+    text-decoration: underline;
+  }
+</style>
+{% endblock %}
+
+{% block title %} My Stored Posts {% endblock %}
+
+{% block content %}
+<section id="stored-posts">
+  <h1>My Stored Posts</h1>
+  
+  {% if not has_posts %}
+    <p>You do not have any posts saved for later.</p>
+    <p style="text-align: center; margin-top: 2rem;">
+      <a href="{% url 'starting-page' %}" style="color: #5706c0; text-decoration: none; font-weight: 600;">Browse posts</a>
+    </p>
+  {% else %}
+    <ul>
+      {% for post in posts %}
+        <li style="display: flex; justify-content: space-between; align-items: center;">
+          <div>
+            <a href="{% url 'post-details' post.slug %}">{{ post.title }}</a>
+            <div style="font-size: 0.9rem; color: #666; margin-top: 0.5rem;">{{ post.excerpt|truncatewords:15 }}</div>
+          </div>
+          <form action="{% url 'read-later' %}" method="POST" style="margin: 0;">
+            {% csrf_token %}
+            <input type="hidden" name="post_id" value="{{ post.id }}">
+            <input type="hidden" name="remove" value="true">
+            <button type="submit" style="background: #dc3545; color: white; border: none; padding: 0.5rem 1rem; border-radius: 4px; cursor: pointer; font-size: 0.9rem;">Remove</button>
+          </form>
+        </li>
+      {% endfor %}
+    </ul>
+  {% endif %}
+</section>
+{% endblock %}
